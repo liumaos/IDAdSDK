@@ -344,10 +344,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-IDAdSDK_Example/Pods-IDAdSDK_Example-frameworks.sh",
 				"${PODS_ROOT}/KSAdSDK/KSAdSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/SensorsAnalyticsSDK/SensorsAnalyticsSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSAdSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SensorsAnalyticsSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

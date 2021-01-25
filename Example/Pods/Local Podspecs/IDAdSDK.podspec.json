@@ -1,6 +1,6 @@
 {
   "name": "IDAdSDK",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "summary": "IDAdSDK",
   "description": "IDAdSDK 自用SDK IDAdSDK 自用SDK",
   "homepage": "http://www.seblong.com",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/liumaos/IDAdSDK.git",
-    "tag": "0.1.6"
+    "tag": "0.1.7"
   },
   "platforms": {
     "ios": "9.0"
@@ -31,6 +31,9 @@
 
     ],
     "Ads-CN": [
+
+    ],
+    "SensorsAnalyticsSDK/DISABLE_UIWEBVIEW": [
 
     ]
   }

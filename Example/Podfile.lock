@@ -9,11 +9,15 @@ PODS:
   - GDTMobSDK (4.12.3):
     - GDTMobSDK/GDTMobSDK (= 4.12.3)
   - GDTMobSDK/GDTMobSDK (4.12.3)
-  - IDAdSDK (0.1.6):
+  - IDAdSDK (0.1.7):
     - Ads-CN
     - GDTMobSDK
     - KSAdSDK (= 3.0.0.2)
+    - SensorsAnalyticsSDK/DISABLE_UIWEBVIEW
   - KSAdSDK (3.0.0.2)
+  - SensorsAnalyticsSDK/Core (2.2.7)
+  - SensorsAnalyticsSDK/DISABLE_UIWEBVIEW (2.2.7):
+    - SensorsAnalyticsSDK/Core
 
 DEPENDENCIES:
   - IDAdSDK (from `../`)
@@ -23,6 +27,7 @@ SPEC REPOS:
     - Ads-CN
     - GDTMobSDK
     - KSAdSDK
+    - SensorsAnalyticsSDK
 
 EXTERNAL SOURCES:
   IDAdSDK:
@@ -31,8 +36,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Ads-CN: e73f0137d12d841eb2cfcfecbe75c0d3f74d5889
   GDTMobSDK: 1e245a7a1f3960516fa8f5fb1038a349931dbd90
-  IDAdSDK: a78db8d7148f01ff01096803c64885fd0c241393
+  IDAdSDK: 476b45903afbd2d73488d5c5799344bb2d1c7b42
   KSAdSDK: 33051b572bb1aa5d0db79bc2b5b0bdfbe72325bf
+  SensorsAnalyticsSDK: 3ea0d6165b1f773b9ed01f3c53ff7c09b7df4535
 
 PODFILE CHECKSUM: 0fe2bbea0a16afa91ffad17454b47dde107e2e0f
 
