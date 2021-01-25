@@ -1,0 +1,45 @@
+PODS:
+  - Ads-CN (3.4.2.3):
+    - Ads-CN/BUAdSDK (= 3.4.2.3)
+  - Ads-CN/BUAdSDK (3.4.2.3):
+    - Ads-CN/BUFoundation
+    - Ads-CN/Domestic
+  - Ads-CN/BUFoundation (3.4.2.3)
+  - Ads-CN/Domestic (3.4.2.3)
+  - GDTMobSDK (4.12.3):
+    - GDTMobSDK/GDTMobSDK (= 4.12.3)
+  - GDTMobSDK/GDTMobSDK (4.12.3)
+  - IDAdSDK (0.1.9):
+    - Ads-CN
+    - GDTMobSDK
+    - KSAdSDK (= 3.0.0.2)
+    - SensorsAnalyticsSDK/DISABLE_UIWEBVIEW
+  - KSAdSDK (3.0.0.2)
+  - SensorsAnalyticsSDK/Core (2.2.7)
+  - SensorsAnalyticsSDK/DISABLE_UIWEBVIEW (2.2.7):
+    - SensorsAnalyticsSDK/Core
+
+DEPENDENCIES:
+  - IDAdSDK (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Ads-CN
+    - GDTMobSDK
+    - KSAdSDK
+    - SensorsAnalyticsSDK
+
+EXTERNAL SOURCES:
+  IDAdSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Ads-CN: e73f0137d12d841eb2cfcfecbe75c0d3f74d5889
+  GDTMobSDK: 1e245a7a1f3960516fa8f5fb1038a349931dbd90
+  IDAdSDK: f3b1abab8458f0ea48e4f59209b2c9662139bf84
+  KSAdSDK: 33051b572bb1aa5d0db79bc2b5b0bdfbe72325bf
+  SensorsAnalyticsSDK: 3ea0d6165b1f773b9ed01f3c53ff7c09b7df4535
+
+PODFILE CHECKSUM: 0fe2bbea0a16afa91ffad17454b47dde107e2e0f
+
+COCOAPODS: 1.10.1

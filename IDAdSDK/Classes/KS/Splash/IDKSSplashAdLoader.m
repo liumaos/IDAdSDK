@@ -36,7 +36,6 @@
     
     [KSAdSplashManager loadSplash];
     
-    
     [KSAdSplashManager checkSplash:^(KSAdSplashViewController * _Nullable splashViewController) {
         
         if (splashViewController ) {
@@ -45,8 +44,6 @@
             [self ksad_splashAdDidLoad];
         }
     }];
-    
-    
 }
 
 - (void)showSplashAd {
@@ -74,11 +71,15 @@
  */
 - (void)ksad_splashAdDidShow{
     
+    [self.config.delegate idSplashDidShow:self];
+    
 }
 /**
  * 闪屏广告点击转化
  */
 - (void)ksad_splashAdClicked{
+    
+    [self.config.delegate idSplashDidClick:self];
     
 }
 /**
@@ -98,13 +99,19 @@
  */
 - (void)ksad_splashAdVideoDidSkipped:(NSTimeInterval)playDuration{
     
+    [self.config.delegate idSplashDidSkip:self];
+    
 }
 /**
  * 闪屏广告关闭，需要在这个方法里关闭闪屏页面
  * @param converted      是否转化
  */
 - (void)ksad_splashAdDismiss:(BOOL)converted{
+    
     [self.splashViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.config.delegate idSplashDidSkip:self];
+    
 }
 /**
  * 转化控制器容器，如果未实现则默认闪屏页面的上级控制器

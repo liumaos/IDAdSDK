@@ -88,6 +88,7 @@
  */
 - (void)splashAdExposured:(GDTSplashAd *)splashAd{
     
+    [self.config.delegate idSplashDidShow:self];
 }
 
 /**
@@ -111,6 +112,8 @@
  */
 - (void)splashAdClosed:(GDTSplashAd *)splashAd{
     
+    [self.config.delegate idSplashDidClose:self];
+
 }
 
 /**

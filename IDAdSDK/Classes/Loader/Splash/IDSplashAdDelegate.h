@@ -21,8 +21,21 @@
 -(void) idSplashDidLoadError:(NSError*)error
                     loader:(id<IDSplashAdInterface>)loader;
 
+//曝光
+-(void) idSplashDidShow:(id<IDSplashAdInterface>)loader;
+
+
 //广告点击
 -(void) idSplashDidClick:(id<IDSplashAdInterface>)loader;
+
+
+//广告关闭
+-(void) idSplashDidClose:(id<IDSplashAdInterface>)loader;
+
+
+//广告跳过
+-(void) idSplashDidSkip:(id<IDSplashAdInterface>)loader;
+
 
 @end
 

@@ -75,6 +75,8 @@ didFailWithError:(NSError * _Nullable)error{
 
 - (void)splashAdWillVisible:(BUSplashAdView *)splashAd{
     
+    [self.config.delegate idSplashDidShow:self];
+    
 }
 
 - (void)splashAdDidClick:(BUSplashAdView *)splashAd{
@@ -87,6 +89,7 @@ didFailWithError:(NSError * _Nullable)error{
 - (void)splashAdDidClose:(BUSplashAdView *)splashAd{
     [self.splashView removeFromSuperview];
     
+    [self.config.delegate idSplashDidClose:self];
 }
 
 - (void)splashAdWillClose:(BUSplashAdView *)splashAd{
@@ -102,11 +105,17 @@ didFailWithError:(NSError * _Nullable)error{
     
     [self.splashView removeFromSuperview];
     
+    
+    [self.config.delegate idSplashDidSkip:self];
+    
 }
 
 - (void)splashAdCountdownToZero:(BUSplashAdView *)splashAd{
     
     [self.splashView removeFromSuperview];
+    
+    [self.config.delegate idSplashDidClose:self];
+    
     
 }
 

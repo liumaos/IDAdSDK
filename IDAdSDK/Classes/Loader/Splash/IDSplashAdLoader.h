@@ -14,11 +14,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol IDSplashAdLoaderDelegate <NSObject>
 
-//成功
+//成功 有可展示时调用
 -(void) splashAdLoaderDidReady:(IDSplashAdLoader*)loader;
 
-//失败
+//失败 全部失败时调用
 -(void) splashAdLoaderDidError:(IDSplashAdLoader*)loader;
+
+//关闭
+-(void) splashAdLoaderDidClose:(IDSplashAdLoader*)loader;
+
+//跳过
+-(void) splashAdLoaderDidSkip:(IDSplashAdLoader*)loader;
+
+//点击
+-(void) splashAdLoaderDidClick:(IDSplashAdLoader*)loader;
+
+//曝光
+-(void) splashAdLoaderDidShow:(IDSplashAdLoader*)loader;
+
 
 @end
 
@@ -33,10 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
                      delegate:(id<IDSplashAdLoaderDelegate>)delegate;
 
 
+//是否有准备好的广告
 @property(assign,readonly,nonatomic) BOOL hasReadyAd;
-
+ 
+//加载广告
 -(void) loadSplashAd;
 
+//展示广告
 -(void) showSplashAd;
 
 @end

@@ -151,20 +151,17 @@
     
     
     NSLog(@"-->%@ %s",loader,__func__);
-
     
     [self.successLoaders addObject:loader];
     
     [self resultCheckLoader];
-       
+    
 }
 
 -(void)idSplashDidLoadError:(NSError *)error
                      loader:(id<IDSplashAdInterface>)loader{
     
-
-    NSLog(@"-->%@ %s",loader,__func__);
-
+    NSLog(@"-->%@ %s \nError:%@",loader,__func__,error);
     
     [self.failLoaders addObject:loader];
     
@@ -173,13 +170,42 @@
         [self.delegate splashAdLoaderDidError:self];
         return;
     }
-    
 }
 
--(void)idSplashDidClick:(id<IDSplashAdInterface>)loader{
+
+-(void)idSplashDidShow:(id<IDSplashAdInterface>)loader{
+    NSLog(@"-->%@ %s",loader,__func__);
     
-    
+    if ([self.delegate respondsToSelector:@selector(splashAdLoaderDidClose:)]) {
+        [self.delegate splashAdLoaderDidShow:self];
+    }
 }
+
+
+-(void)idSplashDidClick:(id<IDSplashAdInterface>)loader{
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(splashAdLoaderDidClose:)]) {
+        [self.delegate splashAdLoaderDidClick:self];
+    }
+}
+
+-(void)idSplashDidClose:(id<IDSplashAdInterface>)loader{
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(splashAdLoaderDidClose:)]) {
+        [self.delegate splashAdLoaderDidClose:self];
+    }
+}
+
+-(void)idSplashDidSkip:(id<IDSplashAdInterface>)loader{
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(splashAdLoaderDidSkip:)]) {
+        [self.delegate splashAdLoaderDidSkip:self];
+    }
+}
+
 
 
 
