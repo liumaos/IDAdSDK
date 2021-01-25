@@ -1,0 +1,6 @@
+framework module IDAdSDK {
+  umbrella header "IDAdSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
