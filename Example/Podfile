@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'IDAdSDK_Example' do
+  pod 'IDAdSDK', :path => '../'
+
+  target 'IDAdSDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
