@@ -23,7 +23,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.nativeLoader = [[IDNativeAdLoader alloc]initWithBrand:ID3dAdLocationCommunityFeed_1 brands:@[IdADBrandKS] delegate:self];
+    self.nativeLoader = [[IDNativeAdLoader alloc]initWithBrand:ID3dAdLocationCommunityFeed_1 brands:@[IdADBrandBU] delegate:self];
     [self.nativeLoader loadAd:1];
 }
 

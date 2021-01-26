@@ -8,11 +8,30 @@
 #ifndef IDNativeAdLoaderDelegate_h
 #define IDNativeAdLoaderDelegate_h
 
+@class IDNativeAdLoader;
+
 @protocol IDNativeAdLoaderDelegate <NSObject>
 
--(void) nativeAdDidLoadSuccess:(UIView*)adView;
+//成功
+-(void) nativeAdDidLoadSuccess:(IDNativeAdLoader*)loader
+                        adView:(UIView*)adView;
+//失败
+-(void) nativeAdDidLoadFail:(IDNativeAdLoader*)loader
+                      error:(NSError*)error;
 
--(void) nativeAdDidLoadFail:(NSError*)error;
+//曝光
+-(void) nativeAdWillShow:(IDNativeAdLoader*)loader;
+
+//点击后展示
+-(void) nativeAdDidPresent:(IDNativeAdLoader*)loader;
+
+//展示后关闭
+-(void) nativeAdDidClose:(IDNativeAdLoader*)loader;
+
+//点击
+-(void) nativeAdDidClick:(IDNativeAdLoader*)loader;
+
+
 
 @end
 

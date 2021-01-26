@@ -42,6 +42,14 @@
         }
     }];
 }
+
+- (void)showSplashAd {
+    
+    [self.config.presentViewController addChildViewController:self.splashViewController];
+    self.splashViewController.view.frame = CGRectMake(0, 0, self.config.presentViewController.view.bounds.size.width, self.config.presentViewController.view.bounds.size.height - 120);
+    [self.config.presentViewController.view addSubview:self.splashViewController.view];
+}
+
 - (BOOL)isAdReady {
     return self.splashViewController;
 }
@@ -50,12 +58,12 @@
     return self.config.brand;
 }
 
-- (void)showSplashAd {
-    
-    [self.config.presentViewController addChildViewController:self.splashViewController];
-    self.splashViewController.view.frame = CGRectMake(0, 0, self.config.presentViewController.view.bounds.size.width, self.config.presentViewController.view.bounds.size.height - 120);
-    [self.config.presentViewController.view addSubview:self.splashViewController.view];
+
+-(NSString *)description{
+    return @"快手 开屏广告";
 }
+
+
 
 #pragma mark- KSAdSplashInteractDelegate
 

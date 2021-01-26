@@ -51,6 +51,10 @@
     return nil;
 }
 
+-(NSString *)description{
+    return @"穿山甲 原生Feed流";
+}
+
 #pragma mark- BUNativeExpressAdViewDelegate
 
 - (void)nativeExpressAdSuccessToLoad:(BUNativeExpressAdManager *)nativeExpressAdManager views:(NSArray<__kindof BUNativeExpressAdView *> *)views{
@@ -77,9 +81,10 @@
 - (void)nativeExpressAdViewRenderSuccess:(BUNativeExpressAdView *)nativeExpressAdView{
     
     [self.adViews addObject:nativeExpressAdView];
-    [self.config.delegate idNativeDidLoadSuccessAdView:nativeExpressAdView
-                                               inTotal:self.adViews
-                                                loader:self];
+    
+    [self.config.delegate idNativeLoader:self
+                          didLoadSuccess:nativeExpressAdView
+                                 inTotal:self.adViews];
 }
 
 /**
@@ -88,6 +93,7 @@
 - (void)nativeExpressAdViewRenderFail:(BUNativeExpressAdView *)nativeExpressAdView error:(NSError *_Nullable)error{
     
     
+    [self.config.delegate idNativeLoader:self didLoadFail:error];
     
 }
 
@@ -96,12 +102,16 @@
  */
 - (void)nativeExpressAdViewWillShow:(BUNativeExpressAdView *)nativeExpressAdView{
     
+    [self.config.delegate idNativeLoaderWillShow:self];
+    
 }
 
 /**
  * Sent when an ad view is clicked
  */
 - (void)nativeExpressAdViewDidClick:(BUNativeExpressAdView *)nativeExpressAdView{
+    
+    [self.config.delegate idNativeLoaderDidClick:self];
     
 }
 

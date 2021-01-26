@@ -46,6 +46,12 @@
     return nil;
 }
 
+
+-(NSString *)description{
+    return @"广点通 原生Feed流";
+}
+
+
 #pragma mark- GDTNativeExpressAdDelegete
 
 - (void)nativeExpressAdSuccessToLoad:(GDTNativeExpressAd *)nativeExpressAd views:(NSArray<__kindof GDTNativeExpressAdView *> *)views{
@@ -72,13 +78,16 @@
 - (void)nativeExpressAdViewRenderSuccess:(GDTNativeExpressAdView *)nativeExpressAdView{
     
     [self.adViews addObject:nativeExpressAdView];
-    [self.config.delegate idNativeDidLoadSuccessAdView:nativeExpressAdView inTotal:self.adViews loader:self];
+    
+    [self.config.delegate idNativeLoader:self didLoadSuccess:nativeExpressAdView inTotal:self.adViews];
 }
 
 /**
  * 原生模板广告渲染失败
  */
 - (void)nativeExpressAdViewRenderFail:(GDTNativeExpressAdView *)nativeExpressAdView{
+    
+    [self.config.delegate idNativeLoader:self didLoadFail:nil];
     
 }
 
@@ -87,12 +96,16 @@
  */
 - (void)nativeExpressAdViewExposure:(GDTNativeExpressAdView *)nativeExpressAdView{
     
+    [self.config.delegate idNativeLoaderWillShow:nativeExpressAdView];
+    
 }
 
 /**
  * 原生模板广告点击回调
  */
 - (void)nativeExpressAdViewClicked:(GDTNativeExpressAdView *)nativeExpressAdView{
+    
+    [self.config.delegate idNativeLoaderDidClick:self];
     
 }
 
@@ -101,12 +114,16 @@
  */
 - (void)nativeExpressAdViewClosed:(GDTNativeExpressAdView *)nativeExpressAdView{
     
+    [self.config.delegate idNativeLoaderDidClose:self];
+    
 }
 
 /**
  * 点击原生模板广告以后即将弹出全屏广告页
  */
 - (void)nativeExpressAdViewWillPresentScreen:(GDTNativeExpressAdView *)nativeExpressAdView{
+    
+    
     
 }
 
@@ -115,6 +132,8 @@
  */
 - (void)nativeExpressAdViewDidPresentScreen:(GDTNativeExpressAdView *)nativeExpressAdView{
     
+    [self.config.delegate idNativeLoaderDidPresent:self];
+    
 }
 
 /**
@@ -122,12 +141,16 @@
  */
 - (void)nativeExpressAdViewWillDismissScreen:(GDTNativeExpressAdView *)nativeExpressAdView{
     
+    
+    
 }
 
 /**
  * 全屏广告页将要关闭
  */
 - (void)nativeExpressAdViewDidDismissScreen:(GDTNativeExpressAdView *)nativeExpressAdView{
+    
+    [self.config.delegate idNativeLoaderDidClose:self];
     
 }
 
@@ -157,6 +180,8 @@
  */
 - (void)nativeExpressAdViewDidPresentVideoVC:(GDTNativeExpressAdView *)nativeExpressAdView{
     
+    
+    [self.config.delegate idNativeLoaderDidPresent:self];
 }
 
 /**

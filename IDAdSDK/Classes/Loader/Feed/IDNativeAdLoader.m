@@ -46,6 +46,11 @@
     return self;
 }
 
+
+-(IdADBrand)brand{
+    return self.readyAdLoader.brand;
+}
+
 -(void)prepareAdLoader{
     
     self.loaders = (NSMutableArray<IDNativeAdInterface>*)[NSMutableArray arrayWithCapacity:self.brands.count];
@@ -100,7 +105,12 @@
         if ([self.successLoaders containsObject:loader]) {
             //第一顺位加载成功
             self.readyAdLoader = loader;
-            [self.delegate nativeAdDidLoadSuccess:[loader lastAdView]];
+            
+            if ([self.delegate respondsToSelector:@selector(idNativeDidLoadSuccessAdView:inTotal:loader:)]) {
+                
+                [self.delegate nativeAdDidLoadSuccess:self adView:loader.lastAdView];
+            }
+            
             return;
         }else{
             //第一顺位还没加载完成
@@ -116,26 +126,31 @@
         if ([self.successLoaders containsObject:loader]) {
             //成功
             self.readyAdLoader = loader;
-            [self.delegate nativeAdDidLoadSuccess:[loader lastAdView]];
+            
+            if ([self.delegate respondsToSelector:@selector(idNativeDidLoadSuccessAdView:inTotal:loader:)]) {
+                
+                [self.delegate nativeAdDidLoadSuccess:self adView:loader.lastAdView];
+            }
             return;
         }
     }
     //失败
-    [self.delegate nativeAdDidLoadFail:nil];
+    
+    if ([self.delegate respondsToSelector:@selector(nativeAdDidLoadFail:error:)]) {
+        [self.delegate nativeAdDidLoadFail:self error:nil];
+    }
 }
-
 
 #pragma mark- IDNtativeAdDelegate
 
--(void)idNativeDidLoadSuccessAdView:(UIView *)adView
-                            inTotal:(NSArray *)adViews
-                             loader:(id)loader{
+-(void)idNativeLoader:(id)loader didLoadSuccess:(UIView *)adView inTotal:(NSArray *)adViews{
     
     NSLog(@"-->%@ %s",loader,__func__);
     
     [self.successLoaders addObject:loader];
     [self resultCheckLoader];
 }
+
 
 -(void)idNativeLoader:(id)loader didLoadFail:(NSError *)error{
     
@@ -146,11 +161,49 @@
     
     //全部失败
     if (self.failLoaders.count == self.loaders.count) {
-        [self.delegate nativeAdDidLoadFail:nil];
+        
+        if ([self.delegate respondsToSelector:@selector(nativeAdDidLoadFail:error:)]) {
+            [self.delegate nativeAdDidLoadFail:self error:nil];
+        }
         return;
     }
 }
 
+-(void)idNativeLoaderWillShow:(id)loader{
+    
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(nativeAdWillShow:)]) {
+        [self.delegate nativeAdWillShow:self];
+    }
+}
+
+-(void)idNativeLoaderDidClick:(id)loader{
+    
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(nativeAdDidClick:)]) {
+        [self.delegate nativeAdDidClick:self];
+    }
+}
+
+-(void)idNativeLoaderDidClose:(id)loader{
+    
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(nativeAdDidClose:)]) {
+        [self.delegate nativeAdDidClose:self];
+    }
+}
+
+-(void)idNativeLoaderDidPresent:(id)loader{
+    
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    if ([self.delegate respondsToSelector:@selector(nativeAdDidPresent:)]) {
+        [self.delegate nativeAdDidPresent:self];
+    }
+}
 
 
 @end

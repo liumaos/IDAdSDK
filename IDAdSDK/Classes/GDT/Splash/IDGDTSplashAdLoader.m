@@ -53,6 +53,10 @@
     return self.config.brand;
 }
 
+-(NSString *)description{
+    return @"广点通 开屏广告";
+}
+
 #pragma mark- GDTSplashAdDelegate
 
 /**

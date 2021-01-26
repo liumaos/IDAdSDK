@@ -45,6 +45,10 @@
     return nil;
 }
 
+-(NSString *)description{
+    return @"快手 原生Feed流";
+}
+
 #pragma mark- KSFeedAdsManagerDelegate
 
 - (void)feedAdsManagerSuccessToLoad:(KSFeedAdsManager *)adsManager nativeAds:(NSArray<KSFeedAd *> *_Nullable)feedAdDataArray{
@@ -55,21 +59,26 @@
     for (KSFeedAd *feed in feedAdDataArray) {
         
         [self.adViews addObject:feed.feedView];
-        [self.config.delegate idNativeDidLoadSuccessAdView:feed.feedView inTotal:self.adViews loader:self];
         feed.delegate = self;
+        
+        [self.config.delegate idNativeLoader:self didLoadSuccess:feed.feedView inTotal:self.adViews];
     }
 }
 
 - (void)feedAdsManager:(KSFeedAdsManager *)adsManager didFailWithError:(NSError *_Nullable)error{
     
+    [self.config.delegate idNativeLoader:self didLoadFail:error];
 }
 
 #pragma mark- KSFeedAdDelegate
 
 - (void)feedAdViewWillShow:(KSFeedAd *)feedAd{
+    [self.config.delegate idNativeLoaderWillShow:self];
     
 }
 - (void)feedAdDidClick:(KSFeedAd *)feedAd{
+    
+    [self.config.delegate idNativeLoaderDidClick:self];
     
 }
 - (void)feedAdDislike:(KSFeedAd *)feedAd{
