@@ -7,6 +7,7 @@
 
 #import "IDViewController.h"
 #import "IDSplashAdLoader.h"
+#import "IDNativeViewController.h"
 
 @interface IDViewController ()<IDSplashAdLoaderDelegate>
 
@@ -36,10 +37,33 @@
     
 }
 
+- (void)splashAdLoaderDidClick:(nonnull IDSplashAdLoader *)loader {
+    
+}
+
+
+- (void)splashAdLoaderDidClose:(nonnull IDSplashAdLoader *)loader {
+    
+}
+
+
+- (void)splashAdLoaderDidShow:(nonnull IDSplashAdLoader *)loader {
+    
+}
+
+
+- (void)splashAdLoaderDidSkip:(nonnull IDSplashAdLoader *)loader {
+    
+}
+
 - (IBAction)loadAd:(UIButton *)sender {
     
     [self.splashLoader loadSplashAd];
     
+}
+- (IBAction)nativeAd:(UIButton *)sender {
+    
+    [self.navigationController pushViewController:[IDNativeViewController new] animated:YES];
 }
 
 

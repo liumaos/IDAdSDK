@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		91FAA4A9836D525A179B5D10 /* Pods_IDAdSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE7C5A4ECC455AEAB9AD1D4 /* Pods_IDAdSDK_Tests.framework */; };
+		C4BB8C2725BFBD5D00162751 /* IDNativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BB8C2625BFBD5D00162751 /* IDNativeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AC4F649BFF8FBE172B14BA2 /* IDAdSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = IDAdSDK.podspec; path = ../IDAdSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A5CD559B24C97919DC009DDB /* Pods-IDAdSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDAdSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-IDAdSDK_Tests/Pods-IDAdSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		C4BB8C2525BFBD5D00162751 /* IDNativeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDNativeViewController.h; sourceTree = "<group>"; };
+		C4BB8C2625BFBD5D00162751 /* IDNativeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDNativeViewController.m; sourceTree = "<group>"; };
 		D98174A13FB57C457644C11E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E3A800E6C2CC5B47706F003B /* Pods-IDAdSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDAdSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-IDAdSDK_Tests/Pods-IDAdSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ECE7C5A4ECC455AEAB9AD1D4 /* Pods_IDAdSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IDAdSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +150,8 @@
 				6003F59D195388D20070C39A /* IDAppDelegate.m */,
 				6003F5A5195388D20070C39A /* IDViewController.h */,
 				6003F5A6195388D20070C39A /* IDViewController.m */,
+				C4BB8C2525BFBD5D00162751 /* IDNativeViewController.h */,
+				C4BB8C2625BFBD5D00162751 /* IDNativeViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -248,6 +253,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = wangwei;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = 6H4U9JRM8M;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -344,12 +352,16 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-IDAdSDK_Example/Pods-IDAdSDK_Example-frameworks.sh",
 				"${PODS_ROOT}/KSAdSDK/KSAdSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/SensorsAnalyticsSDK/SensorsAnalyticsSDK.framework",
+				"${PODS_ROOT}/LookinServer/LookinServer.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KSAdSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SensorsAnalyticsSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LookinServer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -387,6 +399,7 @@
 			files = (
 				6003F59E195388D20070C39A /* IDAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* IDViewController.m in Sources */,
+				C4BB8C2725BFBD5D00162751 /* IDNativeViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,7 +453,7 @@
 		6003F5BD195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -480,7 +493,7 @@
 		6003F5BE195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -515,6 +528,7 @@
 			baseConfigurationReference = 8102AC3CD118D09DB8C1D625 /* Pods-IDAdSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6H4U9JRM8M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IDAdSDK/IDAdSDK-Prefix.pch";
 				INFOPLIST_FILE = "IDAdSDK/IDAdSDK-Info.plist";
@@ -531,6 +545,7 @@
 			baseConfigurationReference = 2A22CE20441575E5FE2F3054 /* Pods-IDAdSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6H4U9JRM8M;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IDAdSDK/IDAdSDK-Prefix.pch";
 				INFOPLIST_FILE = "IDAdSDK/IDAdSDK-Info.plist";

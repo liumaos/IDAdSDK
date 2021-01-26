@@ -8,10 +8,11 @@
 #import "IDBUSplashAdLoader.h"
 #import <BUAdSDK/BUAdSDK.h>
 #import "IDADConfig.h"
+#import "IDSplashAdConfig.h"
 
 @interface IDBUSplashAdLoader ()<BUSplashAdDelegate>
 
-@property(nonatomic,strong) IDADConfig *config;
+@property(nonatomic,strong) IDSplashAdConfig *config;
 @property(nonatomic,strong) BUSplashAdView *splashView;
 @property(nonatomic,assign) BOOL isReady;
 
@@ -20,7 +21,7 @@
 @implementation IDBUSplashAdLoader
 
 -(void)configApp:(IDADConfig *)config{
-    self.config = config;
+    self.config = (IDSplashAdConfig*)config;
 }
 
 -(void) loadSplashAd{

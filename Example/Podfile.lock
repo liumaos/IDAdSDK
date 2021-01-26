@@ -9,25 +9,31 @@ PODS:
   - GDTMobSDK (4.12.3):
     - GDTMobSDK/GDTMobSDK (= 4.12.3)
   - GDTMobSDK/GDTMobSDK (4.12.3)
-  - IDAdSDK (0.1.9):
+  - IDAdSDK (0.1.10):
     - Ads-CN
     - GDTMobSDK
     - KSAdSDK (= 3.0.0.2)
-    - SensorsAnalyticsSDK/DISABLE_UIWEBVIEW
+    - Masonry
+    - SDWebImage
   - KSAdSDK (3.0.0.2)
-  - SensorsAnalyticsSDK/Core (2.2.7)
-  - SensorsAnalyticsSDK/DISABLE_UIWEBVIEW (2.2.7):
-    - SensorsAnalyticsSDK/Core
+  - LookinServer (1.0.0)
+  - Masonry (1.1.0)
+  - SDWebImage (5.10.3):
+    - SDWebImage/Core (= 5.10.3)
+  - SDWebImage/Core (5.10.3)
 
 DEPENDENCIES:
   - IDAdSDK (from `../`)
+  - LookinServer
 
 SPEC REPOS:
   trunk:
     - Ads-CN
     - GDTMobSDK
     - KSAdSDK
-    - SensorsAnalyticsSDK
+    - LookinServer
+    - Masonry
+    - SDWebImage
 
 EXTERNAL SOURCES:
   IDAdSDK:
@@ -36,10 +42,12 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Ads-CN: e73f0137d12d841eb2cfcfecbe75c0d3f74d5889
   GDTMobSDK: 1e245a7a1f3960516fa8f5fb1038a349931dbd90
-  IDAdSDK: f3b1abab8458f0ea48e4f59209b2c9662139bf84
+  IDAdSDK: 9a10ee5da19a534d3bb5b3a3029dff4f72d61a87
   KSAdSDK: 33051b572bb1aa5d0db79bc2b5b0bdfbe72325bf
-  SensorsAnalyticsSDK: 3ea0d6165b1f773b9ed01f3c53ff7c09b7df4535
+  LookinServer: 0002891cd3cec5e082a910e897dfe71b4f06b89e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: e378178472b735e84b007bfb55514c97948a0598
 
-PODFILE CHECKSUM: 0fe2bbea0a16afa91ffad17454b47dde107e2e0f
+PODFILE CHECKSUM: 2b39729f4d6d1ad0857aa40c077c098ac328c0d0
 
 COCOAPODS: 1.10.1

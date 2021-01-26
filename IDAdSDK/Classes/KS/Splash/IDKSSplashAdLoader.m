@@ -6,13 +6,12 @@
 //
 
 #import "IDKSSplashAdLoader.h"
-#import "IDADConfig.h"
 #import <KSAdSDK/KSAdSDK.h>
-
+#import "IDSplashAdConfig.h"
 
 @interface IDKSSplashAdLoader ()<KSAdSplashInteractDelegate>
 
-@property(nonatomic,strong) IDADConfig *config;
+@property(nonatomic,strong) IDSplashAdConfig *config;
 @property(nonatomic,strong) KSAdSplashViewController *splashViewController;
 @property(nonatomic,assign) BOOL isReady;
 
@@ -21,7 +20,7 @@
 @implementation IDKSSplashAdLoader
 
 - (void)configApp:(IDADConfig *)config {
-    self.config = config;
+    self.config = (IDSplashAdConfig*)config;
 }
 
 - (BOOL)isAdReady {

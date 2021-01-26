@@ -8,12 +8,12 @@
 #import "IDGDTSplashAdLoader.h"
 #import <GDTMobSDK/GDTSplashAd.h>
 #import <GDTMobSDK/GDTSDKConfig.h>
-#import "IDADConfig.h"
+#import "IDSplashAdConfig.h"
 
 
 @interface IDGDTSplashAdLoader ()<GDTSplashAdDelegate>
 
-@property(nonatomic,strong) IDADConfig *config;
+@property(nonatomic,strong) IDSplashAdConfig *config;
 @property(nonatomic,strong) GDTSplashAd *splashAd;
 
 @end
@@ -22,7 +22,7 @@
 
 
 -(void)configApp:(IDADConfig *)config{
-    self.config = config;
+    self.config = (IDSplashAdConfig*)config;
 }
 
 -(void)loadSplashAd{

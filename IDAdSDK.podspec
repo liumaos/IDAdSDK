@@ -38,6 +38,7 @@ Pod::Spec.new do |s|
    s.dependency 'KSAdSDK','3.0.0.2'
    s.dependency 'GDTMobSDK'
    s.dependency 'Ads-CN'
-   s.dependency 'SensorsAnalyticsSDK/DISABLE_UIWEBVIEW'
+   s.dependency 'Masonry'
+   s.dependency 'SDWebImage'
 
 end

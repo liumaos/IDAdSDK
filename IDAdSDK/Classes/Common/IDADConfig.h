@@ -26,14 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 ///位置ID
 @property(nonatomic,copy) NSString *pid;
 
-///广告代理
-@property(nonatomic,weak) id<IDSplashAdDelegate>delegate;
-
 ///上层控制器
 @property(nonatomic,weak) UIViewController *presentViewController;
 
 ///超时时长
 @property(nonatomic,assign) NSInteger timeout;
+
 
 
 +(instancetype) config:(IdADBrand)brand location:(ID3dAdLocation)location;

@@ -11,7 +11,7 @@
 #import "IDBUSplashAdLoader.h"
 #import "IDGDTSplashAdLoader.h"
 #import "IDKSSplashAdLoader.h"
-#import "IDADConfig.h"
+#import "IDSplashAdConfig.h"
 
 @interface IDSplashAdLoader ()<IDSplashAdDelegate>
 
@@ -60,8 +60,8 @@
     
     for (IdADBrand brand in self.brands) {
         
-        IDADConfig *buConfig = [IDADConfig config:brand
-                                         location:self.location];
+        IDSplashAdConfig *buConfig = [IDSplashAdConfig config:brand
+                                                     location:self.location];
         
         buConfig.delegate    = self;
         buConfig.presentViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
