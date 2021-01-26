@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'IDAdSDK'
-  s.version          = '0.1.11'
+  s.version          = '0.1.12'
   s.summary          = 'IDAdSDK'
 
 # This description is used to generate tags and improve search results.
@@ -28,6 +28,11 @@ Pod::Spec.new do |s|
   s.static_framework      = true
   s.pod_target_xcconfig = { 'VALID_ARCHS' => 'x86_64 armv7 arm64' }
   s.source_files = 'IDAdSDK/Classes/**/*'
+
+  s.vendored_frameworks  = 'KSAdSDK/KSAdSDK.framework'
+  s.frameworks  = 'UIKit','MobileCoreServices','CoreGraphics','Security','SystemConfiguration','CoreTelephony','AdSupport','CoreData','StoreKit','AVFoundation','MediaPlayer','CoreMedia','WebKit','Accelerate','CoreLocation','AVKit','MessageUI','QuickLook','AddressBook'
+  
+  s.libraries   = 'resolv.9','z','sqlite3','c++','c++abi'
   
   # s.resource_bundles = {
   #   'IDAdSDK' => ['IDAdSDK/Assets/*.png']
@@ -35,7 +40,7 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-   s.dependency 'KSAdSDK','3.0.0.2'
+   #s.dependency 'KSAdSDK','3.0.0.2'
    s.dependency 'GDTMobSDK'
    s.dependency 'Ads-CN'
    s.dependency 'Masonry'

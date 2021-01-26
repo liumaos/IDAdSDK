@@ -5,13 +5,10 @@ platform :ios, '9.0'
 target 'IDAdSDK_Example' do
   
   pod 'IDAdSDK', :path => '../'
+  #pod 'KSAdSDK',:path => './KSAdSDK/'
   pod 'LookinServer', :configurations => ['Debug']
-
-  post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-    end
-  end
+  pod 'Masonry'
+  pod 'SDWebImage', '5.9.4'
 
   target 'IDAdSDK_Tests' do
     inherit! :search_paths

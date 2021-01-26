@@ -23,10 +23,6 @@
     self.config = (IDSplashAdConfig*)config;
 }
 
-- (BOOL)isAdReady {
-    return self.splashViewController;
-}
-
 - (void)loadSplashAd {
     
     [KSAdSDKManager setAppId:self.config.appid];
@@ -35,14 +31,19 @@
     
     [KSAdSplashManager loadSplash];
     
-    [KSAdSplashManager checkSplash:^(KSAdSplashViewController * _Nullable splashViewController) {
+    __weak typeof(self) wself = self;
+    [KSAdSplashManager checkSplashWithTimeoutv2:self.config.timeout completion:^(KSAdSplashViewController * _Nullable splashViewController, NSError * _Nullable error) {
         
-        if (splashViewController ) {
-            
-            self.splashViewController = splashViewController;
-            [self ksad_splashAdDidLoad];
+        if (error) {
+            [wself ksad_splashAdDidLoadError:error];
+        }else{
+            wself.splashViewController = splashViewController;
+            [wself ksad_splashAdDidLoad];
         }
     }];
+}
+- (BOOL)isAdReady {
+    return self.splashViewController;
 }
 
 -(IdADBrand)brand{
@@ -51,8 +52,9 @@
 
 - (void)showSplashAd {
     
-    self.splashViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self.config.presentViewController  presentViewController:self.splashViewController animated:YES completion:nil];
+    [self.config.presentViewController addChildViewController:self.splashViewController];
+    self.splashViewController.view.frame = CGRectMake(0, 0, self.config.presentViewController.view.bounds.size.width, self.config.presentViewController.view.bounds.size.height - 120);
+    [self.config.presentViewController.view addSubview:self.splashViewController.view];
 }
 
 #pragma mark- KSAdSplashInteractDelegate
@@ -111,8 +113,7 @@
  */
 - (void)ksad_splashAdDismiss:(BOOL)converted{
     
-    [self.splashViewController dismissViewControllerAnimated:YES completion:nil];
-    
+    [self.splashViewController.view removeFromSuperview];
     [self.config.delegate idSplashDidSkip:self];
     
 }

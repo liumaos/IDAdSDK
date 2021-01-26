@@ -8,14 +8,13 @@
 #import "IDKSNativeAdLoader.h"
 #import <KSAdSDK/KSAdSDK.h>
 #import "IDNativeAdConfig.h"
-#import "IDKSNativeAdVideoView.h"
-#import "IDKSNativeAdSingleImageView.h"
 
-@interface IDKSNativeAdLoader ()<KSNativeAdsManagerDelegate,KSNativeAdDelegate>
+@interface IDKSNativeAdLoader ()<KSFeedAdsManagerDelegate,KSFeedAdDelegate>
 
 @property(nonatomic,strong) IDNativeAdConfig *config;
-@property(nonatomic,strong) KSNativeAdsManager *adLoader;
-@property(nonatomic,strong) NSMutableArray *adViews;
+@property(nonatomic,strong) KSFeedAdsManager *adLoader;
+@property(nonatomic,strong) NSMutableArray   *adViews;
+@property(nonatomic,strong) NSArray          *feeds;
 
 @end
 
@@ -28,8 +27,10 @@
 -(void)loadAdCount:(NSInteger)count{
     
     [KSAdSDKManager setAppId:self.config.appid];
-    self.adLoader = [[KSNativeAdsManager alloc]initWithPosId:self.config.pid];
+    
+    self.adLoader = [[KSFeedAdsManager alloc]initWithPosId:self.config.pid size:self.config.nativeAdSize];
     self.adLoader.delegate = self;
+    
     [self.adLoader loadAdDataWithCount:count];
 }
 
@@ -44,91 +45,46 @@
     return nil;
 }
 
-#pragma mark- KSNativeAdsManagerDelegate
+#pragma mark- KSFeedAdsManagerDelegate
 
-- (void)nativeAdsManagerSuccessToLoad:(KSNativeAdsManager *)adsManager nativeAds:(NSArray<KSNativeAd *> *_Nullable)nativeAdDataArray{
+- (void)feedAdsManagerSuccessToLoad:(KSFeedAdsManager *)adsManager nativeAds:(NSArray<KSFeedAd *> *_Nullable)feedAdDataArray{
     
-    self.adViews = [NSMutableArray arrayWithCapacity:nativeAdDataArray.count];
+    self.adViews = [NSMutableArray arrayWithCapacity:feedAdDataArray.count];
+    self.feeds   = feedAdDataArray;
     
-    for (KSNativeAd *nativeAd in nativeAdDataArray) {
+    for (KSFeedAd *feed in feedAdDataArray) {
         
-        UIView *adView = nil;
-        
-        if (nativeAd.data.materialType == KSAdMaterialTypeVideo) {
-            IDKSNativeAdVideoView *videoView = [[IDKSNativeAdVideoView alloc]initWithFrame:CGRectMake(0, 0, self.config.nativeAdSize.width, self.config.nativeAdSize.height)];
-            [videoView render:nativeAd];
-            adView = videoView;
-            
-        }else if(nativeAd.data.materialType == KSAdMaterialTypeSingle){
-            
-            IDKSNativeAdSingleImageView *singleImageView = [[IDKSNativeAdSingleImageView alloc]initWithFrame:CGRectMake(0, 0, self.config.nativeAdSize.width, self.config.nativeAdSize.height)];
-            [singleImageView render:nativeAd];
-            adView = singleImageView;
-        }
-        nativeAd.delegate  = self;
-        nativeAd.rootViewController = self.config.presentViewController;
-        
-        if (adView) {
-            [self.adViews addObject:adView];
-            [self.config.delegate idNativeDidLoadSuccessAdView:adView inTotal:self.adViews  loader:self];
-        }
+        [self.adViews addObject:feed.feedView];
+        [self.config.delegate idNativeDidLoadSuccessAdView:feed.feedView inTotal:self.adViews loader:self];
+        feed.delegate = self;
     }
 }
 
-- (void)nativeAdsManager:(KSNativeAdsManager *)adsManager didFailWithError:(NSError *_Nullable)error{
+- (void)feedAdsManager:(KSFeedAdsManager *)adsManager didFailWithError:(NSError *_Nullable)error{
     
 }
 
+#pragma mark- KSFeedAdDelegate
 
-#pragma mark- KSNativeAdDelegate
-
-
-/**
- This method is called when native ad material loaded successfully.
- */
-- (void)nativeAdDidLoad:(KSNativeAd *)nativeAd{
+- (void)feedAdViewWillShow:(KSFeedAd *)feedAd{
     
+}
+- (void)feedAdDidClick:(KSFeedAd *)feedAd{
+    
+}
+- (void)feedAdDislike:(KSFeedAd *)feedAd{
+    
+    
+}
+- (void)feedAdDidShowOtherController:(KSFeedAd *)nativeAd interactionType:(KSAdInteractionType)interactionType{
+    
+    
+}
+- (void)feedAdDidCloseOtherController:(KSFeedAd *)nativeAd interactionType:(KSAdInteractionType)interactionType{
     
     
 }
 
-/**
- This method is called when native ad materia failed to load.
- @param error : the reason of error
- */
-- (void)nativeAd:(KSNativeAd *)nativeAd didFailWithError:(NSError *_Nullable)error{
-    
-}
-
-/**
- This method is called when native ad slot has been shown.
- */
-- (void)nativeAdDidBecomeVisible:(KSNativeAd *)nativeAd{
-    
-}
-
-/**
- This method is called when native ad is clicked.
- */
-- (void)nativeAdDidClick:(KSNativeAd *)nativeAd withView:(UIView *_Nullable)view{
-    
-}
-
-/**
- This method is called when another controller has been showed.
- @param interactionType : open appstore in app or open the webpage or view video ad details page.
- */
-- (void)nativeAdDidShowOtherController:(KSNativeAd *)nativeAd interactionType:(KSAdInteractionType)interactionType{
-    
-}
-
-/**
- This method is called when another controller has been closed.
- @param interactionType : open appstore in app or open the webpage or view video ad details page.
- */
-- (void)nativeAdDidCloseOtherController:(KSNativeAd *)nativeAd interactionType:(KSAdInteractionType)interactionType{
-    
-}
 
 
 @end

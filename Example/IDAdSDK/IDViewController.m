@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.splashLoader = [[IDSplashAdLoader alloc]initWithBrand:ID3dAdLocationSplash brands:@[IdADBrandBU] delegate:self];
+    self.splashLoader = [[IDSplashAdLoader alloc]initWithBrand:ID3dAdLocationSplash brands:@[IdADBrandKS] delegate:self];
 }
 
 -(void)splashAdLoaderDidReady:(IDSplashAdLoader *)loader{
