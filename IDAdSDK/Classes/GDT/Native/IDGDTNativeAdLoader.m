@@ -35,6 +35,16 @@
     [self.adLoader loadAd:count];
 }
 
+-(IdADBrand)brand{
+    return self.config.brand;
+}
+
+-(UIView *)lastAdView{
+    if (self.adViews.count) {
+        return self.adViews.lastObject;
+    }
+    return nil;
+}
 
 #pragma mark- GDTNativeExpressAdDelegete
 

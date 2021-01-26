@@ -33,6 +33,17 @@
     [self.adLoader loadAdDataWithCount:count];
 }
 
+-(IdADBrand)brand{
+    return self.config.brand;
+}
+
+-(UIView *)lastAdView{
+    if (self.adViews.count) {
+        return self.adViews.lastObject;
+    }
+    return nil;
+}
+
 #pragma mark- KSNativeAdsManagerDelegate
 
 - (void)nativeAdsManagerSuccessToLoad:(KSNativeAdsManager *)adsManager nativeAds:(NSArray<KSNativeAd *> *_Nullable)nativeAdDataArray{
@@ -58,6 +69,7 @@
         nativeAd.rootViewController = self.config.presentViewController;
         
         if (adView) {
+            [self.adViews addObject:adView];
             [self.config.delegate idNativeDidLoadSuccessAdView:adView inTotal:self.adViews  loader:self];
         }
     }

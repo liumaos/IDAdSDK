@@ -48,6 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //是否有准备好的广告
 @property(assign,readonly,nonatomic) BOOL hasReadyAd;
+
+//被展示品牌
+@property(assign,readonly,nonatomic) IdADBrand successShowBrand;
  
 //加载广告
 -(void) loadSplashAd;

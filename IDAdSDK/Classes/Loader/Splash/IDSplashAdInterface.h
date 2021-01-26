@@ -7,6 +7,7 @@
 
 #ifndef IDSplashAdInterface_h
 #define IDSplashAdInterface_h
+#import "IDAdDefines.h"
 
 @class IDADConfig;
 
@@ -19,6 +20,9 @@
 -(void) showSplashAd;
 
 -(BOOL) isAdReady;
+
+-(IdADBrand) brand;
+
 
 @end
 

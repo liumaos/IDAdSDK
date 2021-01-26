@@ -50,6 +50,10 @@
     return self.readyAdLoader;
 }
 
+-(IdADBrand)successShowBrand{
+    return self.readyAdLoader.brand;
+}
+
 //添加品牌广告Loader
 -(void)prepareAdLoader{
     
@@ -104,7 +108,7 @@
     }
 }
 
-//回调结果监测
+//回调结果检测
 -(void) resultCheckLoader{
     
     //已有准备的Loader
@@ -129,7 +133,7 @@
     }
 }
 
-//超时监测
+//超时检测
 -(void) outTimeCheak{
     
     for (id<IDSplashAdInterface> loader in self.loaders) {
@@ -148,7 +152,6 @@
 #pragma mark- IDSplashAdDelegate
 
 -(void)idSplashDidLoadSuccess:(id<IDSplashAdInterface>)loader{
-    
     
     NSLog(@"-->%@ %s",loader,__func__);
     

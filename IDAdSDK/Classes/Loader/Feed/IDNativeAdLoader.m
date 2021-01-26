@@ -84,20 +84,73 @@
     }
 }
 
+//回调结果检测
+-(void) resultCheckLoader{
+    
+    //已有准备的Loader
+    if (self.readyAdLoader) {
+        return;
+    }
+    //成功时
+    for (id<IDNativeAdInterface> loader in self.loaders) {
+        
+        if ([self.failLoaders containsObject:loader]) {
+            continue;
+        }
+        if ([self.successLoaders containsObject:loader]) {
+            //第一顺位加载成功
+            self.readyAdLoader = loader;
+            [self.delegate nativeAdDidLoadSuccess:[loader lastAdView]];
+            return;
+        }else{
+            //第一顺位还没加载完成
+            return;
+        }
+    }
+}
+
+//超时检测
+-(void) outTimeCheak{
+    
+    for (id<IDNativeAdInterface> loader in self.loaders) {
+        if ([self.successLoaders containsObject:loader]) {
+            //成功
+            self.readyAdLoader = loader;
+            [self.delegate nativeAdDidLoadSuccess:[loader lastAdView]];
+            return;
+        }
+    }
+    //失败
+    [self.delegate nativeAdDidLoadFail:nil];
+}
+
+
 #pragma mark- IDNtativeAdDelegate
 
 -(void)idNativeDidLoadSuccessAdView:(UIView *)adView
                             inTotal:(NSArray *)adViews
                              loader:(id)loader{
     
-    [self.delegate nativeAdDidLoadSuccess:adView];
+    NSLog(@"-->%@ %s",loader,__func__);
+    
+    [self.successLoaders addObject:loader];
+    [self resultCheckLoader];
 }
-
 
 -(void)idNativeLoader:(id)loader didLoadFail:(NSError *)error{
     
     
+    NSLog(@"-->%@ %s \nError:%@",loader,__func__,error);
+    
+    [self.failLoaders addObject:loader];
+    
+    //全部失败
+    if (self.failLoaders.count == self.loaders.count) {
+        [self.delegate nativeAdDidLoadFail:nil];
+        return;
+    }
 }
+
 
 
 @end

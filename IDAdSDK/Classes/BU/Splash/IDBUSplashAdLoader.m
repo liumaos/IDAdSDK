@@ -49,10 +49,14 @@
     return  self.splashView.isAdValid;
 }
 
+-(IdADBrand)brand{
+    return self.config.brand;
+}
+
+
 -(NSString *)description{
     return @"穿山甲 - 开屏广告";
 }
-
 
 #pragma mark- BUSplashAdDelegate
 

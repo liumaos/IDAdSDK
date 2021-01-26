@@ -35,9 +35,20 @@
     slot.ID = self.config.pid;
     
     self.adManager = [[BUNativeExpressAdManager alloc]initWithSlot:slot adSize:self.config.nativeAdSize];
+    self.adManager.delegate = self;
     [self.adManager loadAdDataWithCount:count];
     
-    self.adManager.delegate = self;
+}
+
+-(IdADBrand)brand{
+    return self.config.brand;
+}
+
+-(UIView *)lastAdView{
+    if (self.adViews.count) {
+        return self.adViews.lastObject;
+    }
+    return nil;
 }
 
 #pragma mark- BUNativeExpressAdViewDelegate

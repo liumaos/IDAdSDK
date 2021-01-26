@@ -45,6 +45,10 @@
     }];
 }
 
+-(IdADBrand)brand{
+    return self.config.brand;
+}
+
 - (void)showSplashAd {
     
     self.splashViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

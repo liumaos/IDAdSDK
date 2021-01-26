@@ -9,6 +9,8 @@
 #ifndef IDNativeAdInterface_h
 #define IDNativeAdInterface_h
 
+#import "IDAdDefines.h"
+
 @class IDADConfig;
 
 @protocol IDNativeAdInterface <NSObject>
@@ -17,6 +19,9 @@
 
 -(void) loadAdCount:(NSInteger)count;
 
+-(IdADBrand) brand;
+
+-(UIView*) lastAdView;
 
 @end
 
