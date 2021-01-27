@@ -51,7 +51,10 @@
 }
 
 -(IdADBrand)successShowBrand{
-    return self.readyAdLoader.brand;
+    return self.readyAdLoader.adConfig.brand;
+}
+-(NSString *)successShowPid{
+    return self.readyAdLoader.adConfig.pid;
 }
 
 //添加品牌广告Loader

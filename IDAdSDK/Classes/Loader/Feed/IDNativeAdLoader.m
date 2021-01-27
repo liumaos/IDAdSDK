@@ -46,9 +46,12 @@
     return self;
 }
 
+-(IdADBrand)successShowBrand{
+    return self.readyAdLoader.adConfig.brand;
+}
 
--(IdADBrand)brand{
-    return self.readyAdLoader.brand;
+-(NSString *)successShowPid{
+    return self.readyAdLoader.adConfig.pid;
 }
 
 -(void)prepareAdLoader{
@@ -87,6 +90,10 @@
             [loader loadAdCount:count ];
         }
     }
+    __weak typeof(self) weakself = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(ID_AD_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weakself outTimeCheak];
+    });
 }
 
 //回调结果检测
@@ -106,7 +113,7 @@
             //第一顺位加载成功
             self.readyAdLoader = loader;
             
-            if ([self.delegate respondsToSelector:@selector(idNativeDidLoadSuccessAdView:inTotal:loader:)]) {
+            if ([self.delegate respondsToSelector:@selector(idNativeLoader:didLoadSuccess:inTotal:)]) {
                 
                 [self.delegate nativeAdDidLoadSuccess:self adView:loader.lastAdView];
             }
@@ -127,7 +134,7 @@
             //成功
             self.readyAdLoader = loader;
             
-            if ([self.delegate respondsToSelector:@selector(idNativeDidLoadSuccessAdView:inTotal:loader:)]) {
+            if ([self.delegate respondsToSelector:@selector(nativeAdDidLoadSuccess:adView:)]) {
                 
                 [self.delegate nativeAdDidLoadSuccess:self adView:loader.lastAdView];
             }

@@ -41,5 +41,29 @@
     
 }
 
+- (void)nativeAdDidClick:(IDNativeAdLoader *)loader {
+    
+}
+
+- (void)nativeAdDidClose:(IDNativeAdLoader *)loader {
+    
+}
+
+- (void)nativeAdDidLoadFail:(IDNativeAdLoader *)loader error:(NSError *)error {
+    
+}
+
+- (void)nativeAdDidLoadSuccess:(IDNativeAdLoader *)loader adView:(UIView *)adView {
+    
+}
+
+- (void)nativeAdDidPresent:(IDNativeAdLoader *)loader {
+    
+}
+
+- (void)nativeAdWillShow:(IDNativeAdLoader *)loader {
+    
+}
+
 
 @end

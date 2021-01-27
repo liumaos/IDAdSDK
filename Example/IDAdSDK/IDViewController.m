@@ -8,10 +8,14 @@
 #import "IDViewController.h"
 #import "IDSplashAdLoader.h"
 #import "IDNativeViewController.h"
+#import "IDRewardAdLoader.h"
 
-@interface IDViewController ()<IDSplashAdLoaderDelegate>
+
+@interface IDViewController ()<IDSplashAdLoaderDelegate,IDRewardAdLoaderDelegate>
 
 @property(nonatomic,strong)  IDSplashAdLoader *splashLoader;
+
+@property(nonatomic,strong)  IDRewardAdLoader *rewardLoader;
 
 @end
 
@@ -21,6 +25,7 @@
     [super viewDidLoad];
     
     self.splashLoader = [[IDSplashAdLoader alloc]initWithBrand:ID3dAdLocationSplash brands:@[IdADBrandKS] delegate:self];
+    self.rewardLoader = [[IDRewardAdLoader alloc]initWithBrand:ID3dAdLocationSleepDetail brands:@[IdADBrandBU] delegate:self];
 }
 
 -(void)splashAdLoaderDidReady:(IDSplashAdLoader *)loader{
@@ -65,6 +70,15 @@
     
     [self.navigationController pushViewController:[IDNativeViewController new] animated:YES];
 }
+
+
+
+- (IBAction)rewardAd:(UIButton *)sender {
+    
+    [self.rewardLoader loadRewardAd];
+    
+}
+
 
 
 @end

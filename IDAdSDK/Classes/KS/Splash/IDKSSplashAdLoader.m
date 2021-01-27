@@ -54,16 +54,13 @@
     return self.splashViewController;
 }
 
--(IdADBrand)brand{
-    return self.config.brand;
+-(IDADConfig *)adConfig{
+    return self.config;
 }
-
 
 -(NSString *)description{
     return @"快手 开屏广告";
 }
-
-
 
 #pragma mark- KSAdSplashInteractDelegate
 

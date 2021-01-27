@@ -51,6 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 //被展示品牌
 @property(assign,readonly,nonatomic) IdADBrand successShowBrand;
+
+//被展示品牌Pid
+@property(copy,readonly,nonatomic) NSString *successShowPid;
  
 //加载广告
 -(void) loadSplashAd;

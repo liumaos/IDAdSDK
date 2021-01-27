@@ -19,7 +19,7 @@
 
 -(void) loadAdCount:(NSInteger)count;
 
--(IdADBrand) brand;
+-(IDADConfig*) adConfig;
 
 -(UIView*) lastAdView;
 

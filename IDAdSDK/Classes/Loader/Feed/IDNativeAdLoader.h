@@ -18,7 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
                        brands:(NSArray<IdADBrand>*)brand
                      delegate:(id<IDNativeAdLoaderDelegate>)delegate;
 
-@property(nonatomic,strong) IdADBrand brand;
+//被展示品牌
+@property(assign,readonly,nonatomic) IdADBrand successShowBrand;
+
+//被展示品牌Pid
+@property(copy,readonly,nonatomic) NSString *successShowPid;
 
 -(void) loadAd:(NSInteger)count;
 

@@ -49,8 +49,8 @@
     return  self.splashView.isAdValid;
 }
 
--(IdADBrand)brand{
-    return self.config.brand;
+-(IDADConfig *)adConfig{
+    return self.config;
 }
 
 -(NSString *)description{

@@ -34,8 +34,8 @@
     [self.adLoader loadAdDataWithCount:count];
 }
 
--(IdADBrand)brand{
-    return self.config.brand;
+-(IDADConfig*)adConfig{
+    return self.config;
 }
 
 -(UIView *)lastAdView{

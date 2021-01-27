@@ -21,7 +21,7 @@
 
 -(BOOL) isAdReady;
 
--(IdADBrand) brand;
+-(IDADConfig*) adConfig;
 
 
 @end

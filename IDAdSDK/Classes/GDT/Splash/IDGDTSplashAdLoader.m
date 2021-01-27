@@ -20,7 +20,6 @@
 
 @implementation IDGDTSplashAdLoader
 
-
 -(void)configApp:(IDADConfig *)config{
     self.config = (IDSplashAdConfig*)config;
 }
@@ -37,7 +36,6 @@
     
 }
 
-
 -(void)showSplashAd{
     
     [self.splashAd showAdInWindow:[UIApplication sharedApplication].keyWindow
@@ -49,8 +47,8 @@
     return self.splashAd.isAdValid;
 }
 
--(IdADBrand)brand{
-    return self.config.brand;
+-(IDADConfig *)adConfig{
+    return self.config;
 }
 
 -(NSString *)description{
