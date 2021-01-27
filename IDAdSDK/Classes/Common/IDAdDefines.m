@@ -9,9 +9,9 @@
 
 //TOOD:根据后台配置填写
 NSString * const IdADBrandSnail  = @"IdADBrandSnail";
-NSString * const IdADBrandGDT    = @"IdADBrandGDT";
-NSString * const IdADBrandBU     = @"IdADBrandBU";
-NSString * const IdADBrandKS     = @"IdADBrandKS";
+NSString * const IdADBrandGDT    = @"gdt";
+NSString * const IdADBrandBU     = @"csj";
+NSString * const IdADBrandKS     = @"kuaishou";
 
 
 NSString * const ID3dAdLocationSplash              = @"ID3dAdLocationSplash";

@@ -25,7 +25,7 @@
     [super viewDidLoad];
     
     self.splashLoader = [[IDSplashAdLoader alloc]initWithBrand:ID3dAdLocationSplash brands:@[IdADBrandKS] delegate:self];
-    self.rewardLoader = [[IDRewardAdLoader alloc]initWithBrand:ID3dAdLocationSleepDetail brands:@[IdADBrandBU] delegate:self];
+    self.rewardLoader = [[IDRewardAdLoader alloc]initWithBrand:ID3dAdLocationHelpSleep brands:@[IdADBrandBU] delegate:self];
 }
 
 -(void)splashAdLoaderDidReady:(IDSplashAdLoader *)loader{
