@@ -54,6 +54,10 @@
     return self.readyAdLoader.adConfig.pid;
 }
 
+-(UIView *)cacheAdView{
+    return self.readyAdLoader.lastAdView;
+}
+
 -(void)prepareAdLoader{
     
     self.loaders = (NSMutableArray<IDNativeAdInterface>*)[NSMutableArray arrayWithCapacity:self.brands.count];
@@ -90,6 +94,7 @@
             [loader loadAdCount:count ];
         }
     }
+    
     __weak typeof(self) weakself = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(ID_AD_TIMEOUT * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [weakself outTimeCheak];
@@ -117,7 +122,6 @@
                 
                 [self.delegate nativeAdDidLoadSuccess:self adView:loader.lastAdView];
             }
-            
             return;
         }else{
             //第一顺位还没加载完成

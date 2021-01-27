@@ -52,7 +52,6 @@
     
     [self.config.delegate idRewardAdDidLoadSuccess:self];
     
-    
 }
 
 /**
@@ -61,6 +60,8 @@
  */
 - (void)rewardedVideoAd:(KSRewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *_Nullable)error{
     
+    [self.config.delegate idRewardAdDidLoad:self error:error];
+
 }
 /**
  This method is called when cached successfully.
@@ -82,6 +83,9 @@
  */
 - (void)rewardedVideoAdDidVisible:(KSRewardedVideoAd *)rewardedVideoAd{
     
+    
+    [self.config.delegate idRewardAdVideoDidShow:self];
+    
 }
 /**
  This method is called when video ad is about to close.
@@ -93,6 +97,8 @@
  This method is called when video ad is closed.
  */
 - (void)rewardedVideoAdDidClose:(KSRewardedVideoAd *)rewardedVideoAd{
+ 
+    [self.config.delegate idRewardAdVideoDidClose:self];
     
 }
 
@@ -100,6 +106,8 @@
  This method is called when video ad is clicked.
  */
 - (void)rewardedVideoAdDidClick:(KSRewardedVideoAd *)rewardedVideoAd{
+    
+    [self.config.delegate idRewardAdVideoDidClick:self];
     
 }
 /**
@@ -114,17 +122,24 @@
  */
 - (void)rewardedVideoAdDidClickSkip:(KSRewardedVideoAd *)rewardedVideoAd{
     
+    [self.config.delegate idRewardAdVideoDidSkip:self];
+    
 }
 /**
  This method is called when the video begin to play.
  */
 - (void)rewardedVideoAdStartPlay:(KSRewardedVideoAd *)rewardedVideoAd{
     
+    
 }
 /**
  This method is called when the user close video ad.
  */
 - (void)rewardedVideoAd:(KSRewardedVideoAd *)rewardedVideoAd hasReward:(BOOL)hasReward{
+    
+    if (hasReward) {
+        [self.config.delegate idRewardAdVideoDidRewarded:self];
+    }
     
 }
 

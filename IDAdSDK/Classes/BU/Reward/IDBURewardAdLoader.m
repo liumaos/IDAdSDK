@@ -59,6 +59,8 @@
  */
 - (void)nativeExpressRewardedVideoAd:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *_Nullable)error{
     
+    [self.config.delegate idRewardAdDidLoad:self error:error];
+    
     
 }
 /**
@@ -75,6 +77,8 @@
  And you can call [BUNativeExpressRewardedVideoAd showAdFromRootViewController:].
  */
 - (void)nativeExpressRewardedVideoAdDidDownLoadVideo:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd{
+    
+    [self.config.delegate idRewardAdVideoDidLoad:self];
     
     
 }
@@ -103,8 +107,6 @@
  */
 - (void)nativeExpressRewardedVideoAdWillVisible:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd{
     
-    
-    
 }
 
 /**
@@ -113,13 +115,14 @@
 - (void)nativeExpressRewardedVideoAdDidVisible:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd{
     
     
+    [self.config.delegate idRewardAdVideoDidShow:self];
+    
 }
 
 /**
  This method is called when video ad is about to close.
  */
 - (void)nativeExpressRewardedVideoAdWillClose:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd{
-    
     
 }
 
@@ -128,7 +131,7 @@
  */
 - (void)nativeExpressRewardedVideoAdDidClose:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd{
     
-    
+    [self.config.delegate idRewardAdVideoDidClose:self];
 }
 
 /**
@@ -136,7 +139,7 @@
  */
 - (void)nativeExpressRewardedVideoAdDidClick:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd{
     
-    
+    [self.config.delegate idRewardAdVideoDidClick:self];
 }
 
 /**
@@ -144,7 +147,7 @@
  */
 - (void)nativeExpressRewardedVideoAdDidClickSkip:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd{
     
-    
+    [self.config.delegate idRewardAdVideoDidSkip:self];
 }
 
 /**
@@ -163,6 +166,7 @@
  */
 - (void)nativeExpressRewardedVideoAdServerRewardDidSucceed:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd verify:(BOOL)verify{
     
+    [self.config.delegate idRewardAdVideoDidRewarded:self];
     
 }
 
@@ -183,6 +187,7 @@
  */
 - (void)nativeExpressRewardedVideoAdDidCloseOtherController:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd interactionType:(BUInteractionType)interactionType{
     
+    //跳转
     
 }
 

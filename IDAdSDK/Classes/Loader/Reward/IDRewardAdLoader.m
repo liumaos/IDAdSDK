@@ -91,26 +91,117 @@
     [self.readyAdLoader showRewardAd];
 }
 
--(void)outTimeCheak{
-    
+
+-(IdADBrand)successShowBrand{
+    return self.readyAdLoader.adConfig.brand;
 }
 
+-(NSString *)successShowPid{
+    return self.readyAdLoader.adConfig.pid;
+}
+
+//回调结果检测
+-(void) resultCheckLoader{
+    
+    //已有准备的Loader
+    if (self.readyAdLoader) {
+        return;
+    }
+    //成功时
+    for (id<IDRewardAdInterface> loader in self.loaders) {
+        
+        if ([self.failLoaders containsObject:loader]) {
+            continue;
+        }
+        if ([self.successLoaders containsObject:loader]) {
+            //第一顺位加载成功
+            self.readyAdLoader = loader;
+            [self.delegate rewardAdDidReady:self];
+            return;
+        }else{
+            //第一顺位还没加载完成
+            return;
+        }
+    }
+}
+
+//超时检测
+-(void) outTimeCheak{
+    
+    for (id<IDRewardAdInterface> loader in self.loaders) {
+        
+        if ([self.successLoaders containsObject:loader]) {
+            //成功
+            self.readyAdLoader = loader;
+            [self.delegate rewardAdDidReady:self];
+            return;
+        }
+    }
+    //失败
+    [self.delegate rewardAdDidLoad:self error:nil];
+}
 
 #pragma mark- IDRewardAdDelegate
 
--(void)idRewardAdDidLoadSuccess:(id)loader{
+- (void)idRewardAdDidLoad:(id)loader
+                    error:(NSError *)error {
+    
+    [self.failLoaders addObject:loader];
+    
+    //全部失败
+    if (self.failLoaders.count == self.loaders.count) {
+        [self.delegate rewardAdDidLoad:self error:error];
+        return;
+    }
+}
+
+- (void)idRewardAdDidLoadSuccess:(id)loader {
+    
+    if ([self.delegate respondsToSelector:@selector(rewardAdDidLoad:)]) {
+        [self.delegate rewardAdDidLoad:self];
+    }
+}
+
+- (void)idRewardAdVideoDidLoad:(id)loader {
+    
+    [self.successLoaders addObject:loader];
+    [self resultCheckLoader];
+}
+
+- (void)idRewardAdVideoDidClick:(id)loader {
+    
+    if ([self.delegate respondsToSelector:@selector(rewardAdDidClick:)]) {
+        [self.delegate rewardAdDidClick:self];
+    }
+}
+
+- (void)idRewardAdVideoDidClose:(id)loader {
+    
+    if ([self.delegate respondsToSelector:@selector(rewardAdDidClose:)]) {
+        [self.delegate rewardAdDidClose:self];
+    }
+}
+
+- (void)idRewardAdVideoDidRewarded:(id)loader {
+    
+    if ([self.delegate respondsToSelector:@selector(rewardAdDidRewarded:)]) {
+        [self.delegate rewardAdDidRewarded:self];
+    }
     
 }
 
--(void)idRewardAdDidLoad:(id)loader error:(NSError *)error{
+- (void)idRewardAdVideoDidShow:(id)loader {
     
+    if ([self.delegate respondsToSelector:@selector(rewardAdDidShow:)]) {
+        [self.delegate rewardAdDidShow:self];
+    }
 }
 
--(void)idRewardAdVideoDidLoad:(id)loader{
+- (void)idRewardAdVideoDidSkip:(id)loader {
     
-    self.readyAdLoader = loader;
-    
-    [self.readyAdLoader showRewardAd];
+    if ([self.delegate respondsToSelector:@selector(rewardAdDidSkip:)]) {
+        [self.delegate rewardAdDidSkip:self];
+    }
     
 }
 

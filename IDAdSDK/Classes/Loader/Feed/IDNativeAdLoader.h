@@ -22,7 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(assign,readonly,nonatomic) IdADBrand successShowBrand;
 
 //被展示品牌Pid
-@property(copy,readonly,nonatomic) NSString *successShowPid;
+@property(copy,readonly,nonatomic)  NSString *successShowPid;
+
+//缓存AdView
+@property(strong,readonly,nonatomic) UIView *cacheAdView;
+
 
 -(void) loadAd:(NSInteger)count;
 

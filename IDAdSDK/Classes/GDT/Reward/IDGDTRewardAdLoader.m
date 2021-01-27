@@ -7,15 +7,13 @@
 
 #import "IDGDTRewardAdLoader.h"
 #import <GDTMobSDK/GDTSDKConfig.h>
-#import <GDTMobSDK/GDTNativeExpressRewardVideoAd.h>
+#import <GDTMobSDK/GDTRewardVideoAd.h>
 #import "IDRewardAdConfig.h"
 
-@interface IDGDTRewardAdLoader ()<GDTNativeExpressRewardedVideoAdDelegate>
+@interface IDGDTRewardAdLoader ()<GDTRewardedVideoAdDelegate>
 
 @property(nonatomic,strong) IDRewardAdConfig *config;
-@property(nonatomic,strong) GDTNativeExpressRewardVideoAd *rewardLoader;
-
-
+@property(nonatomic,strong) GDTRewardVideoAd *rewardLoader;
 
 @end
 
@@ -27,8 +25,9 @@
 -(void)loadRewardAd{
     
     [GDTSDKConfig registerAppId:self.config.appid];
-    self.rewardLoader = [[GDTNativeExpressRewardVideoAd alloc]initWithPlacementId:self.config.pid];
+    self.rewardLoader = [[GDTRewardVideoAd alloc]initWithPlacementId:self.config.pid];
     self.rewardLoader.delegate = self;
+    [self.rewardLoader loadAd];
 }
 
 -(void)showRewardAd{
@@ -42,13 +41,16 @@
 
 #pragma mark- GDTNativeExpressRewardedVideoAdDelegate
 
+//没有Skip
 
 /**
  广告数据加载成功回调
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
  */
-- (void)gdt_nativeExpressRewardVideoAdDidLoad:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd{
+- (void)gdt_rewardVideoAdDidLoad:(GDTRewardVideoAd *)rewardedVideoAd{
+    
+    [self.config.delegate idRewardAdDidLoadSuccess:self];
     
 }
 
@@ -57,8 +59,9 @@
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
  */
-- (void)gdt_nativeExpressRewardVideoAdVideoDidLoad:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd{
+- (void)gdt_rewardVideoAdVideoDidLoad:(GDTRewardVideoAd *)rewardedVideoAd{
     
+    [self.config.delegate idRewardAdVideoDidLoad:self];
 }
 
 /**
@@ -66,7 +69,8 @@
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
  */
-- (void)gdt_nativeExpressRewardVideoAdWillVisible:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd{
+- (void)gdt_rewardVideoAdWillVisible:(GDTRewardVideoAd *)rewardedVideoAd{
+    
     
 }
 
@@ -75,7 +79,9 @@
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
  */
-- (void)gdt_nativeExpressRewardVideoAdDidExposed:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd{
+- (void)gdt_rewardVideoAdDidExposed:(GDTRewardVideoAd *)rewardedVideoAd{
+    
+    [self.config.delegate idRewardAdVideoDidShow:self];
     
 }
 
@@ -84,7 +90,9 @@
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
  */
-- (void)gdt_nativeExpressRewardVideoAdDidClose:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd{
+- (void)gdt_rewardVideoAdDidClose:(GDTRewardVideoAd *)rewardedVideoAd{
+    
+    [self.config.delegate idRewardAdVideoDidClose:self];
     
 }
 
@@ -93,8 +101,9 @@
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
  */
-
--(void)gdt_nativeExpressRewardVideoAdDidClicked:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd{
+- (void)gdt_rewardVideoAdDidClicked:(GDTRewardVideoAd *)rewardedVideoAd{
+    
+    [self.config.delegate idRewardAdVideoDidClick:self];
     
 }
 
@@ -104,17 +113,19 @@
  @param rewardedVideoAd GDTRewardVideoAd 实例
  @param error 具体错误信息
  */
-- (void)gdt_nativeExpressRewardVideoAd:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error{
+- (void)gdt_rewardVideoAd:(GDTRewardVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error{
     
+    [self.config.delegate idRewardAdDidLoad:self error:error];
 }
-
 
 /**
  视频广告播放达到激励条件回调
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
+ @param info 包含此次广告行为的一些信息，例如 @{@"GDT_TRANS_ID":@"930f1fc8ac59983bbdf4548ee40ac353"}, 通过@“GDT_TRANS_ID”可获取此次广告行为的交易id
  */
-- (void)gdt_nativeExpressRewardVideoAdDidRewardEffective:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd info:(NSDictionary *)info{
+- (void)gdt_rewardVideoAdDidRewardEffective:(GDTRewardVideoAd *)rewardedVideoAd info:(NSDictionary *)info{
+    
     
 }
 
@@ -123,8 +134,10 @@
  
  @param rewardedVideoAd GDTRewardVideoAd 实例
  */
-- (void)gdt_nativeExpressRewardVideoAdDidPlayFinish:(GDTNativeExpressRewardVideoAd *)rewardedVideoAd{
+- (void)gdt_rewardVideoAdDidPlayFinish:(GDTRewardVideoAd *)rewardedVideoAd{
     
+    [self.config.delegate idRewardAdVideoDidRewarded:self];
 }
+
 
 @end

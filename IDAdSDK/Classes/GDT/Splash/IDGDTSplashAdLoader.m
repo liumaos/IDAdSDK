@@ -27,7 +27,6 @@
 -(void)loadSplashAd{
     
     [GDTSDKConfig registerAppId:self.config.appid];
-    
     GDTSplashAd *splashAd = [[GDTSplashAd alloc]initWithPlacementId:@"73646b0499021991"];
     splashAd.delegate = self;
     splashAd.fetchDelay = self.config.timeout;
@@ -76,9 +75,9 @@
  *  开屏广告展示失败
  */
 - (void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error{
-
+    
     [self.config.delegate idSplashDidLoadError:error loader:self];
-        
+    
 }
 
 /**
@@ -119,7 +118,7 @@
 - (void)splashAdClosed:(GDTSplashAd *)splashAd{
     
     [self.config.delegate idSplashDidClose:self];
-
+    
 }
 
 /**
